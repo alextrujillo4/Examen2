@@ -149,8 +149,9 @@ public class Game implements Runnable {
                     Iterator itr= enemies.iterator();
                             while(itr.hasNext()){
                                 ((Enemy)itr.next()).tick();
+
                                 for(Enemy enemy: enemies){
-                                  
+ 
                                     //checa cuando hay colision a la derecha
                                   if (enemy.getX()+enemy.getWidth() >=this.getWidth()){
                                       //agrupa a todos los enemigos como uno solo 
@@ -169,15 +170,12 @@ public class Game implements Runnable {
                                          }
                                      }
                             }
+                                
                     }
 
-                            
-                            
-
-                            
-                    // check collision enemy vs rayo
+                             
+                    // check collision enemies vs rayo
                     for (int i = 0; i < enemies.size(); i++) {
-
                         Enemy enemy = (Enemy) enemies.get(i);
                         if (enemy != null ){
                             if (rayo.intersects(enemy)) {
@@ -196,16 +194,41 @@ public class Game implements Runnable {
                                 rayo.setY(y);
                                 rayo.setX(x);
                                 rayo.setSpeedY(0);
-                                setStarted(false);
-                                
+                                setStarted(false);  
                                 
                             }
+                            
+                            
                         }
                     }
+
+                     // check collision Fortaleza vs rayo
+                    for (int i = 0; i < fortalezas.size(); i++) {
+                        Fortaleza fortaleza = (Fortaleza) fortalezas.get(i);
+                        if (fortaleza != null ){
+                            if (rayo.intersects(fortaleza)) {
+                                //sound = new SoundClipTest("correct");
+                                fortaleza.setVidas(fortaleza.getVidas() - 1);
+                                if(fortaleza.getVidas() == 0){
+                                    fortalezas.remove(fortaleza);
+                                    i--;
+                                }
+                                int y =  getPlayer().getY() -  getPlayer().getHeight() ;
+                                int x =  getPlayer().getX() + (getPlayer().getWidth())/2;
+                                rayo.setY(y);
+                                rayo.setX(x);
+                                rayo.setSpeedY(0);
+                                setStarted(false);  
+                                
+                            }
+                            
+                            
+                        }
+                    }
+                    
                     if(enemies.isEmpty())
                          win=true;          
                     
-                   
                 }
             }else{
                //When game is LOST (live - 1), keymanager keeps listening for "J" ro init again
