@@ -148,59 +148,29 @@ public class Game implements Runnable {
                     
                     
                     //enemigos se muevan
-                    
                     Iterator itr= enemies.iterator();
                             while(itr.hasNext()){
                                 ((Enemy)itr.next()).tick();
                                 for(Enemy enemy: enemies){
-                                    //int x=enemy.getX();
-                                    //System.out.println("ANTES DEL IF");
+                                  
+                                    //checa cuando hay colision a la derecha
                                   if (enemy.getX()+enemy.getWidth() >=this.getWidth()){
+                                      //agrupa a todos los enemigos como uno solo 
                                      for(Enemy enemy2: enemies){
+                                         //se mueve para abajo y cambia de direccion
                                          enemy2.y= enemy2.y+1;
                                          enemy2.setDireccion(-1);
                                          
-                                     }
-                                     
-                                    
-                                      // System.out.println("Despues del if");
-                                     
+                                     }  
                                 }
-                                  
+                                  //checa cuando hay colision a la izquierda
                                   else  if(enemy.getX()<=0){
-                                         //System.out.println("Despues del if");
                                          for(Enemy enemy3: enemies){
                                             enemy3.setDireccion(1);
                                             enemy3.y=enemy3.y+1;
                                          }
                                      }
-                                
                             }
-                    
-                    
-                    
-                    
-                   //for (Enemy alien: enemies){
-                       // alien.tick();
-                       /*int x= alien.getX();
-                        if(x>=this.getWidth()- 30 && direction != -1){
-                            direction=-1;
-                            Iterator it = enemies.iterator();
-                            while(it.hasNext()){
-                                Enemy e2= (Enemy) it.next();
-                                e2.setY(e2.getY()+ 15);
-                            }
-                        }
-                        
-                        if(x <= 5 && direction != 1){
-                            direction = 1;
-                            Iterator it2=enemies.iterator();
-                            while(it2.hasNext()){
-                                Enemy e= (Enemy) it2.next();
-                                e.setY(e.getY()+15);
-                            }
-                        }
-                       */
                     }
                     
                    
@@ -277,8 +247,12 @@ public class Game implements Runnable {
                        rayo.setY(getHeight() - 1);
                     } 
                     //when there's no brick , the Player will win 
-                    if(enemies.size() == 0)
-                         win=true;
+                    if(enemies.size() ==0 ){
+                       // win=true;
+                        generateEnemies();
+                        
+                    }
+                         
                 }
 
             }else{

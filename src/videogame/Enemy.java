@@ -19,12 +19,7 @@ public class Enemy extends Item{
     private Game game;
     private int tipo;
     private int vel=1;
-    public int direccion=1; // 1= derecha -1= izquierda
-    private boolean goDown=false;
-    private int movedX=0, movedY=0,wentDown=0;
-
-
-    
+    public int direccion=1; // 1= derecha -1= izquierda    
 
     public Enemy(int x, int y, int width, int height, Game game) {
         super(x, y, width, height);
@@ -42,10 +37,6 @@ public class Enemy extends Item{
         this.direccion = direccion;
     }
     
-    public void movimiento(int direction){
-        this.x += direction;
-    }
-
     public int getVel() {
         return vel;
     }
