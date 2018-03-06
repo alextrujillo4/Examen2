@@ -125,9 +125,6 @@ public class Game implements Runnable {
                 //To pause the game
                 pause = this.getKeyManager().p;
                 if(!(pause)){ //IF IS NOT PAUSED
-                    
-                    
-                    
                     // if space and game has not started
                     if (this.getKeyManager().space && !this.isStarted()) {
                         this.setStarted(true);
@@ -143,13 +140,19 @@ public class Game implements Runnable {
                         // moving the rayo based on the plaver
                         rayo.setX(player.getX() + player.getWidth() / 2 - rayo.getWidth() / 2);
                     }
-
                     // check collision enemy vs rayo
                     for (int i = 0; i < enemies.size(); i++) {
                         Enemy enemy = (Enemy) enemies.get(i);
                         if (enemy != null ){
                             if (rayo.intersects(enemy)) {
-                                //sound = new SoundClipTest("correct");                 
+                                //sound = new SoundClipTest("correct");
+                                if(enemy.getTipo() == 2){
+                                    score+= 8;
+                                }else if(enemy.getTipo() == 1){
+                                    score+= 4;
+                                }else{
+                                    score+= 2;
+                                }
                                 enemies.remove(enemy);
                                 i--;
                                 int y =  getPlayer().getY() -  getPlayer().getHeight() ;
@@ -159,17 +162,13 @@ public class Game implements Runnable {
                                 rayo.setSpeedY(0);
                                 setStarted(false);
                                 
+                                
                             }
                         }
                     }
-
                     //when there's no brick , the Player will win 
                     if(enemies.isEmpty())
                          win=true;
-                    
-                    
-                    
-                    
                     
                 }
             }else{
