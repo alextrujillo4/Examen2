@@ -13,6 +13,7 @@ import static java.lang.Integer.max;
 import static java.lang.Math.random;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
@@ -36,13 +37,14 @@ public class Game implements Runnable {
     private int vidas ;
     private boolean pause;
     private boolean lost;
-    private ArrayList<Enemy> enemies; // Enemies
+    private ArrayList<Enemy> enemies; // Enemies (Aliens)
     private ArrayList<Fortaleza> fortalezas; // Fortalezas
     private KeyManager keyManager;  // to manage the keyboard
     private int score;
     private boolean win;
     private int cont;
     SoundClipTest sound;
+  //  private int direction=-1;
     
     /**
      * to create title, width and height and set the game is still not running
@@ -138,15 +140,77 @@ public class Game implements Runnable {
                     if (this.isStarted()) {
                         // moving the rayo
                         rayo.tick();
+                        
                     } else {
                         // moving the rayo based on the plaver
                         rayo.setX(player.getX() + player.getWidth() / 2 - rayo.getWidth() / 2);
                     }
+                    
+                    
+                    //enemigos se muevan
+                    
+                    Iterator itr= enemies.iterator();
+                            while(itr.hasNext()){
+                                ((Enemy)itr.next()).tick();
+                                for(Enemy enemy: enemies){
+                                    //int x=enemy.getX();
+                                    //System.out.println("ANTES DEL IF");
+                                  if (enemy.getX()+enemy.getWidth() >=this.getWidth()){
+                                     for(Enemy enemy2: enemies){
+                                         enemy2.y= enemy2.y+1;
+                                         enemy2.setDireccion(-1);
+                                         
+                                     }
+                                     
+                                    
+                                      // System.out.println("Despues del if");
+                                     
+                                }
+                                  
+                                  else  if(enemy.getX()<=0){
+                                         //System.out.println("Despues del if");
+                                         for(Enemy enemy3: enemies){
+                                            enemy3.setDireccion(1);
+                                            enemy3.y=enemy3.y+1;
+                                         }
+                                     }
+                                
+                            }
+                    
+                    
+                    
+                    
+                   //for (Enemy alien: enemies){
+                       // alien.tick();
+                       /*int x= alien.getX();
+                        if(x>=this.getWidth()- 30 && direction != -1){
+                            direction=-1;
+                            Iterator it = enemies.iterator();
+                            while(it.hasNext()){
+                                Enemy e2= (Enemy) it.next();
+                                e2.setY(e2.getY()+ 15);
+                            }
+                        }
+                        
+                        if(x <= 5 && direction != 1){
+                            direction = 1;
+                            Iterator it2=enemies.iterator();
+                            while(it2.hasNext()){
+                                Enemy e= (Enemy) it2.next();
+                                e.setY(e.getY()+15);
+                            }
+                        }
+                       */
+                    }
+                    
+                   
+                  
 
                     // check collision bricks versus rayo
                     for (int i = 0; i < enemies.size(); i++) {
                         Enemy brick = (Enemy) enemies.get(i);
                         if (brick != null ){
+                         
                             if (rayo.intersects(brick)) {
                                  if(brick.getTipo()==0){
                                 rayo.setSpeedY((rayo.getSpeedY() *  - 1));

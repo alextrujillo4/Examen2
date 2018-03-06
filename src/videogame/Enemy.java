@@ -18,17 +18,56 @@ public class Enemy extends Item{
 
     private Game game;
     private int tipo;
-    private int vel;
+    private int vel=1;
+    public int direccion=1; // 1= derecha -1= izquierda
+    private boolean goDown=false;
+    private int movedX=0, movedY=0,wentDown=0;
+
+
+    
 
     public Enemy(int x, int y, int width, int height, Game game) {
         super(x, y, width, height);
         this.game = game;
         this.tipo = 0;//0 significa Normal..... 1 = bueno ... 2 = malo
         vel = 2;
+        this.direccion=1;
     }
+
+    public int getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(int direccion) {
+        this.direccion = direccion;
+    }
+    
+    public void movimiento(int direction){
+        this.x += direction;
+    }
+
+    public int getVel() {
+        return vel;
+    }
+
+    public void setVel(int vel) {
+        this.vel = vel;
+    }
+    
+ 
 
     @Override
     public void tick() {
+        
+        //mover a la derecha
+        
+        setX(getX()+direccion);
+         //if (getX()+getWidth() >=game.getWidth()){
+           //  direccion=direccion*-1;
+         
+       
+       
+        
     }
 
     @Override
