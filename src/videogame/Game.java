@@ -44,6 +44,7 @@ public class Game implements Runnable {
     private boolean win;
     private int cont;
     SoundClipTest sound;
+    private int enemiesCont; //this allow us to count the enemies pause when tick
   //  private int direction=-1;
     
     /**
@@ -65,6 +66,7 @@ public class Game implements Runnable {
         lost = false;
         vidas = 3;
         win= false;
+        enemiesCont = 0;
         cont=0;
     }
     
@@ -103,7 +105,6 @@ public class Game implements Runnable {
             delta += (now - lastTime) / timeTick;
             // updating the last time
             lastTime = now;
-            
             // if delta is positive we tick the game
             if (delta >= 1) {
                 tick();
@@ -146,34 +147,35 @@ public class Game implements Runnable {
 
                     
                     //enemigos se muevan
-                    Iterator itr= enemies.iterator();
-                            while(itr.hasNext()){
-                                ((Enemy)itr.next()).tick();
-
-                                for(Enemy enemy: enemies){
- 
-                                    //checa cuando hay colision a la derecha
-                                  if (enemy.getX()+enemy.getWidth() >=this.getWidth()){
-                                      //agrupa a todos los enemigos como uno solo 
-                                     for(Enemy enemy2: enemies){
-                                         //se mueve para abajo y cambia de direccion
-                                         enemy2.y= enemy2.y+1;
-                                         enemy2.setDireccion(-1);
-                                         
-                                     }  
+                    if(enemiesCont< 30){
+                        Iterator itr= enemies.iterator();
+                        while(itr.hasNext()){
+                            ((Enemy)itr.next()).tick();
+                            for(Enemy enemy: enemies){
+                                //checa cuando hay colision a la derecha
+                                if (enemy.getX()+enemy.getWidth() >= this.getWidth()){
+                                    //agrupa a todos los enemigos como uno solo 
+                                    for(Enemy enemy2: enemies){
+                                        //se mueve para abajo y cambia de direccion
+                                        enemy2.setY(enemy2.getY() + 1);
+                                        enemy2.setDireccion(-1);
+                                    }  
+                                }else if(enemy.getX() <= 0){//checa cuando hay colision a la izquierda
+                                    for(Enemy enemy2: enemies){
+                                        enemy2.setDireccion(1);
+                                        enemy2.setY(enemy2.getY() + 1);
+                                    }
                                 }
-                                  //checa cuando hay colision a la izquierda
-                                  else  if(enemy.getX()<=0){
-                                         for(Enemy enemy3: enemies){
-                                            enemy3.setDireccion(1);
-                                            enemy3.y=enemy3.y+1;
-                                         }
-                                     }
-                            }
-                                
+                            }    
+                        }  
+                    }
+                    enemiesCont ++;
+                    if(enemiesCont == 90){
+                        enemiesCont = 0;
                     }
 
-                             
+    
+                    
                     // check collision enemies vs rayo
                     for (int i = 0; i < enemies.size(); i++) {
                         Enemy enemy = (Enemy) enemies.get(i);
@@ -194,14 +196,10 @@ public class Game implements Runnable {
                                 rayo.setY(y);
                                 rayo.setX(x);
                                 rayo.setSpeedY(0);
-                                setStarted(false);  
-                                
-                            }
-                            
-                            
+                                setStarted(false);   
+                            }   
                         }
                     }
-
                      // check collision Fortaleza vs rayo
                     for (int i = 0; i < fortalezas.size(); i++) {
                         Fortaleza fortaleza = (Fortaleza) fortalezas.get(i);
@@ -220,15 +218,13 @@ public class Game implements Runnable {
                                 rayo.setSpeedY(0);
                                 setStarted(false);  
                                 
-                            }
-                            
-                            
+                            }  
                         }
                     }
-                    
                     if(enemies.isEmpty())
                          win=true;          
-                    
+                   
+
                 }
             }else{
                //When game is LOST (live - 1), keymanager keeps listening for "J" ro init again
