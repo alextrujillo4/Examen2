@@ -126,11 +126,12 @@ public class Game implements Runnable {
                 pause = this.getKeyManager().p;
                 if(!(pause)){ //IF IS NOT PAUSED
                     
+                    
+                    
                     // if space and game has not started
                     if (this.getKeyManager().space && !this.isStarted()) {
                         this.setStarted(true);
-                        rayo.setSpeedX(3);
-                        rayo.setSpeedY(-3);
+                        rayo.setSpeedY(-10);
                     } 
                     // moving player
                     player.tick();
@@ -143,80 +144,34 @@ public class Game implements Runnable {
                         rayo.setX(player.getX() + player.getWidth() / 2 - rayo.getWidth() / 2);
                     }
 
-                    // check collision bricks versus rayo
+                    // check collision enemy vs rayo
                     for (int i = 0; i < enemies.size(); i++) {
-                        Enemy brick = (Enemy) enemies.get(i);
-                        if (brick != null ){
-                            if (rayo.intersects(brick)) {
-                                 if(brick.getTipo()==0){
-                                rayo.setSpeedY((rayo.getSpeedY() *  - 1));
-                                 sound = new SoundClipTest("correct");
-                                }
-                                 else if(brick.getTipo() == 1){
-                                    player.setWidth(player.getWidth() + player.getWidth()/4 );
-                                    rayo.setSpeedY((rayo.getSpeedY() *  - 1));
-                                    score += 10;
-                                    sound = new SoundClipTest("correct");
-                                }
-                                else if(brick.getTipo()==2){
-                                    player.setWidth(100);
-                                    score -= 10;
-                                    rayo.setSpeedY((rayo.getSpeedY() *  - 1));
-                                    sound = new SoundClipTest("boom");
-                                }                      
-                                enemies.remove(brick);
+                        Enemy enemy = (Enemy) enemies.get(i);
+                        if (enemy != null ){
+                            if (rayo.intersects(enemy)) {
+                                //sound = new SoundClipTest("correct");                 
+                                enemies.remove(enemy);
                                 i--;
-                                score += 5;
-                                //cont+=1;
+                                int y =  getPlayer().getY() -  getPlayer().getHeight() ;
+                                int x =  getPlayer().getX() + (getPlayer().getWidth())/2;
+                                rayo.setY(y);
+                                rayo.setX(x);
+                                rayo.setSpeedY(0);
+                                setStarted(false);
+                                
                             }
                         }
                     }
 
-                    if(player.intersects(rayo)){
-                         if(rayo.getX() > player.getX() && rayo.getX() + 
-                                 rayo.getWidth() <= player.getX() + player.getWidth()/4){
-                            if(rayo.getSpeedX() > 0){
-                                rayo.setSpeedX(rayo.getSpeedX() *-1);
-                            }else{
-                               rayo.setSpeedX(rayo.getSpeedX() *1); 
-                            }
-                         }else if(rayo.getX() > player.getX() + player.getWidth()/4
-                                &&   rayo.getX() + rayo.getWidth() <=  player.getX()
-                                 + player.getWidth()){
-                            if(rayo.getSpeedX() > 0){
-                                rayo.setSpeedX(rayo.getSpeedX() *1);
-                            }else{
-                               rayo.setSpeedX(rayo.getSpeedX() *-1); 
-                            }
-                        }
-                        rayo.setY(rayo.getY()- rayo.getSpeedY());
-                        rayo.setSpeedY(rayo.getSpeedY() * -1);
-                    }
-                    
-                    
-
-
-                    // collision with walls Y
-                    if(rayo.getY() >= getHeight()){
-                       // game.setGameover(true);
-                       sound = new SoundClipTest("boom");
-                       setVidas(getVidas() - 1);
-                       //****GAMEOVER IF
-                       if(getVidas() == 0)
-                           gameover = true;
-                       else if(getVidas()>=1)
-                       setLost(true);
-                       
-                       //**** END GAMEOVER IF
-                       rayo.setSpeedY(0);
-                       rayo.setSpeedX(0);
-                       rayo.setY(getHeight() - 1);
-                    } 
                     //when there's no brick , the Player will win 
-                    if(enemies.size() == 0)
+                    if(enemies.isEmpty())
                          win=true;
+                    
+                    
+                    
+                    
+                    
                 }
-
             }else{
                //When game is LOST (live - 1), keymanager keeps listening for "J" ro init again
                 if(this.getKeyManager().isJ()){
