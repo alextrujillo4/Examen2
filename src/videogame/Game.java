@@ -146,8 +146,7 @@ public class Game implements Runnable {
                         // moving the rayo based on the plaver
                         rayo.setX(player.getX() + player.getWidth() / 2 - rayo.getWidth() / 2);
                     }
-                    
-                    
+
                     //enemigos se muevan
                     Iterator itr= enemies.iterator();
                             while(itr.hasNext()){
@@ -173,13 +172,10 @@ public class Game implements Runnable {
                                      }
                             }
                     }
-                    
-                   
-                  
 
                     // check collision enemy vs rayo
                     for (int i = 0; i < enemies.size(); i++) {
-<<<<<<< HEAD
+
                         Enemy brick = (Enemy) enemies.get(i);
                         if (brick != null ){
                          
@@ -201,13 +197,13 @@ public class Game implements Runnable {
                                     sound = new SoundClipTest("boom");
                                 }                      
                                 enemies.remove(brick);
-=======
+
                         Enemy enemy = (Enemy) enemies.get(i);
                         if (enemy != null ){
                             if (rayo.intersects(enemy)) {
                                 //sound = new SoundClipTest("correct");                 
                                 enemies.remove(enemy);
->>>>>>> f76444dece5850d6f6957bebccf30263e489ce73
+
                                 i--;
                                 int y =  getPlayer().getY() -  getPlayer().getHeight() ;
                                 int x =  getPlayer().getX() + (getPlayer().getWidth())/2;
@@ -221,23 +217,13 @@ public class Game implements Runnable {
                     }
 
                     //when there's no brick , the Player will win 
-<<<<<<< HEAD
+
                     if(enemies.size() ==0 ){
                        // win=true;
                         generateEnemies();
                         
                     }
-                         
-=======
-                    if(enemies.isEmpty())
-                         win=true;
-                    
-                    
-                    
-                    
-                    
->>>>>>> f76444dece5850d6f6957bebccf30263e489ce73
-                }
+
             }else{
                //When game is LOST (live - 1), keymanager keeps listening for "J" ro init again
                 if(this.getKeyManager().isJ()){
@@ -248,7 +234,7 @@ public class Game implements Runnable {
                 } 
             }//END LOST********
         } 
-         else{
+                }else{
             //When GAMEOVER & WIN  keeps listening for "R" to reinit game
             if(this.getKeyManager().isR()){
                 gameover = false;
@@ -276,6 +262,8 @@ public class Game implements Runnable {
                 generateEnemies();
             }
         }
+    }
+       }
     }
 //END TICK();********
     
