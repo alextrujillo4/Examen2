@@ -13,6 +13,7 @@ import static java.lang.Integer.max;
 import static java.lang.Math.random;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
@@ -36,13 +37,14 @@ public class Game implements Runnable {
     private int vidas ;
     private boolean pause;
     private boolean lost;
-    private ArrayList<Enemy> enemies; // Enemies
+    private ArrayList<Enemy> enemies; // Enemies (Aliens)
     private ArrayList<Fortaleza> fortalezas; // Fortalezas
     private KeyManager keyManager;  // to manage the keyboard
     private int score;
     private boolean win;
     private int cont;
     SoundClipTest sound;
+  //  private int direction=-1;
     
     /**
      * to create title, width and height and set the game is still not running
@@ -136,12 +138,44 @@ public class Game implements Runnable {
                     if (this.isStarted()) {
                         // moving the rayo
                         rayo.tick();
+                        
                     } else {
                         // moving the rayo based on the plaver
                         rayo.setX(player.getX() + player.getWidth() / 2 - rayo.getWidth() / 2);
                     }
+                    
+                                  
+                    //enemigos se muevan
+                    Iterator itr= enemies.iterator();
+                            while(itr.hasNext()){
+                                ((Enemy)itr.next()).tick();
+                                for(Enemy enemy: enemies){
+                                  
+                                    //checa cuando hay colision a la derecha
+                                  if (enemy.getX()+enemy.getWidth() >=this.getWidth()){
+                                      //agrupa a todos los enemigos como uno solo 
+                                     for(Enemy enemy2: enemies){
+                                         //se mueve para abajo y cambia de direccion
+                                         enemy2.y= enemy2.y+1;
+                                         enemy2.setDireccion(-1);
+                                         
+                                     }  
+                                }
+                                  //checa cuando hay colision a la izquierda
+                                  else  if(enemy.getX()<=0){
+                                         for(Enemy enemy3: enemies){
+                                            enemy3.setDireccion(1);
+                                            enemy3.y=enemy3.y+1;
+                                         }
+                                     }
+                            }
+                    }
+                    
+
+                            
                     // check collision enemy vs rayo
                     for (int i = 0; i < enemies.size(); i++) {
+
                         Enemy enemy = (Enemy) enemies.get(i);
                         if (enemy != null ){
                             if (rayo.intersects(enemy)) {
@@ -168,8 +202,9 @@ public class Game implements Runnable {
                     }
                     //when there's no brick , the Player will win 
                     if(enemies.isEmpty())
-                         win=true;
+                         win=true;          
                     
+                   
                 }
             }else{
                //When game is LOST (live - 1), keymanager keeps listening for "J" ro init again
