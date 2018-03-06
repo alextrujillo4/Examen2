@@ -143,8 +143,8 @@ public class Game implements Runnable {
                         // moving the rayo based on the plaver
                         rayo.setX(player.getX() + player.getWidth() / 2 - rayo.getWidth() / 2);
                     }
+
                     
-                                  
                     //enemigos se muevan
                     Iterator itr= enemies.iterator();
                             while(itr.hasNext()){
@@ -170,7 +170,9 @@ public class Game implements Runnable {
                                      }
                             }
                     }
-                    
+
+                            
+                            
 
                             
                     // check collision enemy vs rayo
@@ -200,7 +202,6 @@ public class Game implements Runnable {
                             }
                         }
                     }
-                    //when there's no brick , the Player will win 
                     if(enemies.isEmpty())
                          win=true;          
                     
@@ -216,7 +217,7 @@ public class Game implements Runnable {
                 } 
             }//END LOST********
         } 
-         else{
+                }else{
             //When GAMEOVER & WIN  keeps listening for "R" to reinit game
             if(this.getKeyManager().isR()){
                 gameover = false;
@@ -229,22 +230,9 @@ public class Game implements Runnable {
                 generateEnemies();
             }
         }   
-        
-       }
-       else{
-            //When GAMEOVER & WIN  keeps listening for "R" to reinit game
-            if(this.getKeyManager().isR()){
-                gameover = false;
-                started = false;
-                win = false;
-                vidas = 3;
-                score = 0;
-                resetRayo();
-                resetPlayer();
-                generateEnemies();
-            }
-        }
+
     }
+
 //END TICK();********
     
     private void drawWin(Graphics g){
