@@ -356,9 +356,17 @@ public class Game implements Runnable {
                         generateEnemies();         
                    
                        // }
-                }else{
+                }
+            }
+                
+                
+                
+                
+                
+                
+                else{
                     
-                    getKeyManager().tick();
+                     getKeyManager().tick();
                     // if Wanna save 
                     if(this.getKeyManager().isS()){
                         //Como es estatico y no depende  de instancia  se manda a llamar la Clase (y solito se trae el obj)
@@ -371,9 +379,6 @@ public class Game implements Runnable {
                         Files.loadFile(this);
                         this.getKeyManager().setL(false);
                     }
-                
-                }//END ELSE PAUSE
-            }else{
                //When game is LOST (live - 1), keymanager keeps listening for "J" ro init again
                 if(this.getKeyManager().isJ()){
                     lost = false;
