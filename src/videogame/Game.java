@@ -160,8 +160,7 @@ public class Game implements Runnable {
                         // moving the rayo based on the plaver
                         rayo.setX(player.getX() + player.getWidth() / 2 - rayo.getWidth() / 2);
                     }
-                    
-                    
+
                     Iterator itrb=bombas.iterator();
                    while (itrb.hasNext()){
                         
@@ -192,15 +191,13 @@ public class Game implements Runnable {
                                 if(fortaleza.getVidas() == 0){
                                     fortalezas.remove(fortaleza);
                                    itrf=fortalezas.iterator();
-                                }
-                               
+                                }           
                            }
                            }
                         //borrar cada bomba cada que llegue al suelo
                         if(bomba1.getY()>= getHeight()){
                            bombas.remove(bomba1);
                            itrb=bombas.iterator();
-                           
                          
                         }
                  }
@@ -269,16 +266,12 @@ public class Game implements Runnable {
                         
                           // enemyElegido1=(int)(Math.random()*enemies.size())+1; 
                         }
-               
-            
+
                     
                    if(enemiesCont == 45){
                         enemiesCont = 0;
                     }
-                   
-    
-         
-                    
+ 
                     if(vidas == 0){
                         gameover = true;
                     }
@@ -326,19 +319,10 @@ public class Game implements Runnable {
                                 }
                                 borrego.setX(-80);
                                 borrego.setDirection(0);
-                                //Random random = new Random();
-                                //int rand = random.nextInt(10 - 1 + 1) + 1;
-                                //setScore(getScore() + rand );
-                            
+
                             }
                         }
                     }
-                    
-                    
-                    
-                    
-                    
-                    
                     
                      // check collision Fortaleza vs rayo
                     for (int i = 0; i < fortalezas.size(); i++) {
