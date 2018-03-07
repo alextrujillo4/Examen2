@@ -44,7 +44,15 @@ public class Game implements Runnable {
     private boolean win;
     private int cont;
     SoundClipTest sound;
-  //  private int direction=-1;
+    private int enemiesCont; //this allow us to count the enemies pause when tick
+   private ArrayList<Bomba> bombas;
+   private int tiempoBomba= (int)(Math.random()*50)+ 100; //cada cuantos segundos va a aparecer una bomba
+   private int enemyElegido1,enemyElegido2;
+   private int bombaX, bombaY;
+   private int enemiesbombaCont;
+   private int enemyrandomX, enemyrandomY;
+   
+  
     
     /**
      * to create title, width and height and set the game is still not running
@@ -65,7 +73,9 @@ public class Game implements Runnable {
         lost = false;
         vidas = 3;
         win= false;
+        enemiesCont = 0;
         cont=0;
+        enemiesbombaCont=0;
     }
     
 
@@ -80,6 +90,9 @@ public class Game implements Runnable {
          rayo = new Rayo(getWidth() / 2 - 10, player.y - player.height , 10, 30, 0, 0, this);
          generateEnemies();
          generateFortalezas();
+           bombas= new ArrayList<Bomba>();
+         
+         
          display.getJframe().addKeyListener(keyManager);
     }
     
@@ -103,7 +116,6 @@ public class Game implements Runnable {
             delta += (now - lastTime) / timeTick;
             // updating the last time
             lastTime = now;
-            
             // if delta is positive we tick the game
             if (delta >= 1) {
                 tick();
@@ -127,9 +139,6 @@ public class Game implements Runnable {
                 //To pause the game
                 pause = this.getKeyManager().p;
                 if(!(pause)){ //IF IS NOT PAUSED
-                    
-                    
-                    
                     // if space and game has not started
                     if (this.getKeyManager().space && !this.isStarted()) {
                         this.setStarted(true);
@@ -137,6 +146,7 @@ public class Game implements Runnable {
                     } 
                     // moving player
                     player.tick();
+                    
                     // if game has started
                     if (this.isStarted()) {
                         // moving the rayo
@@ -147,83 +157,111 @@ public class Game implements Runnable {
                         rayo.setX(player.getX() + player.getWidth() / 2 - rayo.getWidth() / 2);
                     }
 
-                    //enemigos se muevan
-                    Iterator itr= enemies.iterator();
-                            while(itr.hasNext()){
-                                ((Enemy)itr.next()).tick();
-                                for(Enemy enemy: enemies){
-                                  
-                                    //checa cuando hay colision a la derecha
-                                  if (enemy.getX()+enemy.getWidth() >=this.getWidth()){
-                                      //agrupa a todos los enemigos como uno solo 
-                                     for(Enemy enemy2: enemies){
-                                         //se mueve para abajo y cambia de direccion
-                                         enemy2.y= enemy2.y+1;
-                                         enemy2.setDireccion(-1);
-                                         
-                                     }  
+                    
+                    Iterator itrb=bombas.iterator();
+                                while(itrb.hasNext()){
+                                    ((Bomba)itrb.next()).tick();
                                 }
-                                  //checa cuando hay colision a la izquierda
-                                  else  if(enemy.getX()<=0){
-                                         for(Enemy enemy3: enemies){
-                                            enemy3.setDireccion(1);
-                                            enemy3.y=enemy3.y+1;
-                                         }
-                                     }
-                            }
+                    
+                    //enemigos se muevan
+                    if(enemiesCont< 15){
+                        Iterator itr= enemies.iterator();
+                        while(itr.hasNext()){
+                            ((Enemy)itr.next()).tick();
+                            for(Enemy enemy: enemies){
+                                //checa cuando hay colision a la derecha
+                                if (enemy.getX()+enemy.getWidth() >= this.getWidth()){
+                                    //agrupa a todos los enemigos como uno solo 
+                                    for(Enemy enemy2: enemies){
+                                        //se mueve para abajo y cambia de direccion
+                                        enemy2.setY(enemy2.getY() + 1);
+                                        enemy2.setDireccion(-1);
+                                    }  
+                                }else if(enemy.getX() <= 0){//checa cuando hay colision a la izquierda
+                                    for(Enemy enemy2: enemies){
+                                        enemy2.setDireccion(1);
+                                        enemy2.setY(enemy2.getY() + 1);
+                                    }
+                                }
+                             }
+                        
+                            
+                        }  
+                    }
+                    enemiesCont++;
+                            
+                        enemyElegido1=(int)(Math.random()*enemies.size())+1;
+                        enemyElegido2=(int)(Math.random()*enemies.size())+1;
+                      if(enemiesCont == 45){
+                          //if(enemiesbombaCont==enemyElegido1 ){
+                          Enemy en = enemies.get(enemyElegido1);
+                           //  enemyrandomX= enemies.get(enemyElegido1).getX();
+                             //enemyrandomY=enemies.get(enemyElegido1).getY();
+                             bombaX= en.getX()+en.getWidth()/2;
+                             bombaY= en.getY();
+                             
+                             bombas.add(new Bomba(bombaX,bombaY,80,80,0,10,this));
+                              
+                         // }
+                        
+                        
+                        enemiesCont = 0;
                     }
 
-                    // check collision enemy vs rayo
+                    
+                    
+
+                    
+                    // check collision enemies vs rayo
                     for (int i = 0; i < enemies.size(); i++) {
-
-                        Enemy brick = (Enemy) enemies.get(i);
-                        if (brick != null ){
-                         
-                            if (rayo.intersects(brick)) {
-                                 if(brick.getTipo()==0){
-                                rayo.setSpeedY((rayo.getSpeedY() *  - 1));
-                                 sound = new SoundClipTest("correct");
-                                }
-                                 else if(brick.getTipo() == 1){
-                                    player.setWidth(player.getWidth() + player.getWidth()/4 );
-                                    rayo.setSpeedY((rayo.getSpeedY() *  - 1));
-                                    score += 10;
-                                    sound = new SoundClipTest("correct");
-                                }
-                                else if(brick.getTipo()==2){
-                                    player.setWidth(100);
-                                    score -= 10;
-                                    rayo.setSpeedY((rayo.getSpeedY() *  - 1));
-                                    sound = new SoundClipTest("boom");
-                                }                      
-                                enemies.remove(brick);
-
                         Enemy enemy = (Enemy) enemies.get(i);
                         if (enemy != null ){
                             if (rayo.intersects(enemy)) {
-                                //sound = new SoundClipTest("correct");                 
+                                //sound = new SoundClipTest("correct");
+                                if(enemy.getTipo() == 2){
+                                    score+= 8;
+                                }else if(enemy.getTipo() == 1){
+                                    score+= 4;
+                                }else{
+                                    score+= 2;
+                                }
                                 enemies.remove(enemy);
-
                                 i--;
                                 int y =  getPlayer().getY() -  getPlayer().getHeight() ;
                                 int x =  getPlayer().getX() + (getPlayer().getWidth())/2;
                                 rayo.setY(y);
                                 rayo.setX(x);
                                 rayo.setSpeedY(0);
-                                setStarted(false);
-                                
-                            }
+                                setStarted(false);   
+                            }   
                         }
                     }
-
-                    //when there's no brick , the Player will win 
-
-                    if(enemies.size() ==0 ){
-                       // win=true;
-                        generateEnemies();
-                        
+                     // check collision Fortaleza vs rayo
+                    for (int i = 0; i < fortalezas.size(); i++) {
+                        Fortaleza fortaleza = (Fortaleza) fortalezas.get(i);
+                        if (fortaleza != null ){
+                            if (rayo.intersects(fortaleza)) {
+                                //sound = new SoundClipTest("correct");
+                                fortaleza.setVidas(fortaleza.getVidas() - 1);
+                                if(fortaleza.getVidas() == 0){
+                                    fortalezas.remove(fortaleza);
+                                    i--;
+                                }
+                                int y =  getPlayer().getY() -  getPlayer().getHeight() ;
+                                int x =  getPlayer().getX() + (getPlayer().getWidth())/2;
+                                rayo.setY(y);
+                                rayo.setX(x);
+                                rayo.setSpeedY(0);
+                                setStarted(false);  
+                                
+                            }  
+                        }
                     }
+                    if(enemies.isEmpty())
+                         win=true;          
+                   
 
+                }
             }else{
                //When game is LOST (live - 1), keymanager keeps listening for "J" ro init again
                 if(this.getKeyManager().isJ()){
@@ -247,24 +285,10 @@ public class Game implements Runnable {
                 generateEnemies();
             }
         }   
-        
-       }
-       else{
-            //When GAMEOVER & WIN  keeps listening for "R" to reinit game
-            if(this.getKeyManager().isR()){
-                gameover = false;
-                started = false;
-                win = false;
-                vidas = 3;
-                score = 0;
-                resetRayo();
-                resetPlayer();
-                generateEnemies();
-            }
-        }
+
     }
-       }
     }
+
 //END TICK();********
     
     private void drawWin(Graphics g){
@@ -328,12 +352,18 @@ public class Game implements Runnable {
                 player.render(g);
                 //player2.render(g);
                 rayo.render(g);
+                
                 for (Enemy brick : enemies) {
                     brick.render(g);
+                    //bomba.render(g);
                 }
                 
                 for (Fortaleza fortaleza : fortalezas) {
                     fortaleza.render(g);
+                }
+                
+                for (Bomba bomba: bombas){
+                    bomba.render(g);
                 }
                 
                 drawScore(g);

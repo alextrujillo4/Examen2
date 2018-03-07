@@ -24,7 +24,7 @@ public class Fortaleza extends Item{
         super(x, y, width, height);
         this.game = game;
         this.tipo = 0;//0 significa Normal..... 1 = bueno ... 2 = malo
-        vidas = 20;
+        vidas = 3;
     }
 
     @Override
@@ -46,6 +46,14 @@ public class Fortaleza extends Item{
             default:
                 break;
         }
+    }
+
+    public int getVidas() {
+        return vidas;
+    }
+
+    public void setVidas(int vidas) {
+        this.vidas = vidas;
     }
     
     

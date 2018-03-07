@@ -32,6 +32,7 @@ public class Assets {
     public static BufferedImage lives2;
     public static BufferedImage lives1;
     public static BufferedImage livesNone;
+    public static BufferedImage rayoEnemigo;
     
     
     public static BufferedImage lost;
@@ -62,6 +63,7 @@ public class Assets {
         lives2 = ImageLoader.loadImage("/images/vidas2.png");
         lives1= ImageLoader.loadImage("/images/vidas1.png");
         livesNone= ImageLoader.loadImage("/images/novidas.png");
+        rayoEnemigo=ImageLoader.loadImage("/images/rayoEnemy.png");
         
         lost= ImageLoader.loadImage("/images/Lost.png");
         pause= ImageLoader.loadImage("/images/pause.png");
