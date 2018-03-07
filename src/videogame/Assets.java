@@ -77,6 +77,25 @@ public class Assets {
     public static BufferedImage rectoria16; 
     public static BufferedImage rectoria17; 
     public static BufferedImage rectoria18; 
+    
+    public static BufferedImage biblio1; 
+    public static BufferedImage biblio2; 
+    public static BufferedImage biblio3; 
+    public static BufferedImage biblio4; 
+    public static BufferedImage biblio5; 
+    public static BufferedImage biblio6; 
+    public static BufferedImage biblio7; 
+    public static BufferedImage biblio8; 
+    public static BufferedImage biblio9; 
+    public static BufferedImage biblio10; 
+    public static BufferedImage biblio11; 
+    public static BufferedImage biblio12; 
+    public static BufferedImage biblio13; 
+    public static BufferedImage biblio14; 
+    public static BufferedImage biblio15; 
+    public static BufferedImage biblio16; 
+    public static BufferedImage biblio17; 
+    public static BufferedImage biblio18; 
 
     
     
@@ -154,6 +173,26 @@ public class Assets {
         rectoria16 = ImageLoader.loadImage("/images/rectoria16.png");
         rectoria17= ImageLoader.loadImage("/images/rectoria17.png");
         rectoria18 = ImageLoader.loadImage("/images/rectoria18.png");
+        
+        
+        biblio1 = ImageLoader.loadImage("/images/biblio1.png");
+        biblio2 = ImageLoader.loadImage("/images/biblio2.png");
+        biblio3 = ImageLoader.loadImage("/images/biblio3.png");
+        biblio4 = ImageLoader.loadImage("/images/biblio4.png");
+        biblio5 = ImageLoader.loadImage("/images/biblio5.png");
+        biblio6 = ImageLoader.loadImage("/images/biblio6.png");
+        biblio7 = ImageLoader.loadImage("/images/biblio7.png");
+        biblio8 = ImageLoader.loadImage("/images/biblio8.png");
+        biblio9 = ImageLoader.loadImage("/images/biblio9.png");
+        biblio10 = ImageLoader.loadImage("/images/biblio10.png");
+        biblio11 = ImageLoader.loadImage("/images/biblio11.png");
+        biblio12 = ImageLoader.loadImage("/images/biblio12.png");
+        biblio13 = ImageLoader.loadImage("/images/biblio13.png");
+        biblio14 = ImageLoader.loadImage("/images/biblio14.png");
+        biblio15 = ImageLoader.loadImage("/images/biblio15.png");
+        biblio16 = ImageLoader.loadImage("/images/biblio16.png");
+        biblio17= ImageLoader.loadImage("/images/biblio17.png");
+        biblio18 = ImageLoader.loadImage("/images/biblio18.png");
         
         
     }

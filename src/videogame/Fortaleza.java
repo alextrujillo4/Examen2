@@ -117,7 +117,43 @@ public class Fortaleza extends Item{
                
                 break;
             case 2:
-                g.drawImage(Assets.biblioteca, getX(), getY(), getWidth(), getHeight(), null);
+                if(vidas == 18){
+                    g.drawImage(Assets.biblio18, getX(), getY(), getWidth(), getHeight(), null);
+                    }else if(vidas == 17){
+                        g.drawImage(Assets.biblio17 , getX(), getY(), getWidth(), getHeight(), null);
+                    }else if(vidas == 16){
+                        g.drawImage(Assets.biblio16 , getX(), getY(), getWidth(), getHeight(), null);
+                    }else if(vidas == 15){
+                        g.drawImage(Assets.biblio15 , getX(), getY(), getWidth(), getHeight(), null);
+                    }else if(vidas == 14){
+                        g.drawImage(Assets.biblio14 , getX(), getY(), getWidth(), getHeight(), null);
+                    }else if(vidas == 13){
+                        g.drawImage(Assets.biblio13 , getX(), getY(), getWidth(), getHeight(), null);
+                    }else if(vidas == 12){
+                        g.drawImage(Assets.biblio12 , getX(), getY(), getWidth(), getHeight(), null);
+                    }else if(vidas == 11){
+                        g.drawImage(Assets.biblio11 , getX(), getY(), getWidth(), getHeight(), null);
+                    }else if(vidas == 10){
+                        g.drawImage(Assets.biblio10 , getX(), getY(), getWidth(), getHeight(), null);
+                    }else if(vidas == 9){
+                        g.drawImage(Assets.biblio9 , getX(), getY(), getWidth(), getHeight(), null);
+                    }else if(vidas == 8){
+                        g.drawImage(Assets.biblio8 , getX(), getY(), getWidth(), getHeight(), null);
+                    }else if(vidas == 7){
+                        g.drawImage(Assets.biblio7 , getX(), getY(), getWidth(), getHeight(), null);
+                    }else if(vidas == 6){
+                        g.drawImage(Assets.biblio6 , getX(), getY(), getWidth(), getHeight(), null);
+                    }else if(vidas == 5){
+                        g.drawImage(Assets.biblio5, getX(), getY(), getWidth(), getHeight(), null);
+                    }else if(vidas == 4){
+                        g.drawImage(Assets.biblio4, getX(), getY(), getWidth(), getHeight(), null);
+                    }else if(vidas == 3){
+                        g.drawImage(Assets.biblio3, getX(), getY(), getWidth(), getHeight(), null);
+                    }else if(vidas == 2){
+                        g.drawImage(Assets.biblio2, getX(), getY(), getWidth(), getHeight(), null);
+                    }else if(vidas == 1){
+                        g.drawImage(Assets.biblio1, getX(), getY(), getWidth(), getHeight(), null);
+                    }
                 break;
             default:
                 break;
