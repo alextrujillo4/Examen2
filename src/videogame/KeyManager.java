@@ -10,7 +10,8 @@ import java.awt.event.KeyListener;
 
 /**
  *
- * @author antoniomejorado
+ * @author Esthephany Ayala Yañez
+ * @author Alex Trujillo
  */
 public class KeyManager implements KeyListener {
     

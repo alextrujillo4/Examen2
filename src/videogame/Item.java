@@ -8,10 +8,10 @@ package videogame;
 
 import java.awt.Graphics;
 import java.awt.Rectangle;
-
 /**
  *
- * @author antoniomejorado
+ * @author Esthephany Ayala Yañez
+ * @author Alex Trujillo
  */
 public abstract class Item {
     protected int x;        // to store x position

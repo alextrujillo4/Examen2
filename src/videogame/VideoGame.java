@@ -7,7 +7,8 @@ package videogame;
 
 /**
  *
- * @author antoniomejorado
+ * @author Esthephany Ayala Yañez
+ * @author Alex Trujillo
  */
 public class VideoGame {
 

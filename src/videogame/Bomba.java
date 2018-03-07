@@ -10,7 +10,8 @@ import java.awt.Graphics;
 
 /**
  *
- * @author esthe
+ * @author Esthephany Ayala Yañez
+ * @author Alex Trujillo
  */
 public class Bomba extends Item {
      private Game game;

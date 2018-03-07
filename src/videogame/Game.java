@@ -20,7 +20,8 @@ import java.util.concurrent.TimeUnit;
 
 /**
  *
- * @author Esthephany Ayala Yañez 
+ * @author Esthephany Ayala Yañez
+ * @author Alex Trujillo
  */
 public class Game implements Runnable {
     private BufferStrategy bs;      // to have several buffers when displaying

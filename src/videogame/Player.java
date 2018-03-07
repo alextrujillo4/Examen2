@@ -11,7 +11,8 @@ import java.awt.Rectangle;
 
 /**
  *
- * @author Esthephany Ayala Yañez 
+ * @author Esthephany Ayala Yañez
+ * @author Alex Trujillo
  */
 public class Player extends Item{
 

@@ -12,7 +12,8 @@ import java.awt.Graphics;
 
 /**
  *
- * @author Esthephany Ayala Yañez 
+ * @author Esthephany Ayala Yañez
+ * @author Alex Trujillo
  */
 public class Enemy extends Item{
 

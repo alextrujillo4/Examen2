@@ -13,8 +13,8 @@ import java.io.PrintWriter;
 
 /**
  *
- * @author alextrujillo
- * istanciar = crear un objeto con esa clase
+ * @author Esthephany Ayala Yañez
+ * @author Alex Trujillo
  */
 public class Files {
     
@@ -49,6 +49,12 @@ public class Files {
                         "," + enemy1.getDireccion());
             }
             //Enemy enemy = new Enemy(x ,y ,40, 40, tipo, vel,  direction, game );
+            
+          /*  printWriter.println(""+game.getFortalezas().size());
+            for(Fortaleza fortaleza1: game.getFortalezas()){
+               printWriter.println("" + fortaleza1.getVidas());
+            }
+            */
             
             printWriter.close(); //Cierrra para guardar
              
@@ -96,7 +102,7 @@ public class Files {
             tokens = line.split(",");
               //geting the nextLine
               line = bufferedReader.readLine();
-              //game.isStarted((tokens[0]));
+             
               game.setStarted(Boolean.valueOf(tokens[0]));
               
            
@@ -120,6 +126,22 @@ public class Files {
             
                 Enemy enemy = new Enemy(x ,y ,40, 40, tipo, vel,  direction, game );
                 game.getEnemies().add(enemy);
+               /* 
+                int fortalezas = Integer.parseInt(line);
+                //clear fortalezas
+                game.getFortalezas().clear();
+                //adding fortalezas
+                for (int j = 0; j < fortalezas ; j++) {
+                 //getting next Line //geting the nextLine
+                line = bufferedReader.readLine();
+                // getting every token from the line
+                tokens = line.split(",");
+                int vidas = Integer.parseInt(tokens[0]);
+                
+                } 
+                */
+                
+                
             }
              
         } catch (IOException ioe){
