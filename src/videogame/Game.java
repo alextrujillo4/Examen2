@@ -147,7 +147,7 @@ public class Game implements Runnable {
 
                     
                     //enemigos se muevan
-                    if(enemiesCont< 30){
+                    if(enemiesCont< 15){
                         Iterator itr= enemies.iterator();
                         while(itr.hasNext()){
                             ((Enemy)itr.next()).tick();
@@ -165,14 +165,27 @@ public class Game implements Runnable {
                                         enemy2.setDireccion(1);
                                         enemy2.setY(enemy2.getY() + 1);
                                     }
+                                }else if(enemy.getY() >= player.getY() - (player.getHeight() + rayo.getHeight())){
+                                    gameover = true;
                                 }
                             }    
                         }  
                     }
                     enemiesCont ++;
-                    if(enemiesCont == 90){
+                    if(enemiesCont == 45){
                         enemiesCont = 0;
                     }
+                    
+                    if(enemies.size() == 0){
+                     //resetGame(); ---> inside: generateEnemies();
+                     vidas = vidas  + 1;
+                    }
+         
+                    
+                    if(vidas == 0){
+                        gameover = true;
+                    }
+                        
 
     
                     
@@ -225,7 +238,23 @@ public class Game implements Runnable {
                          win=true;          
                    
 
-                }
+                }else{
+                    
+                    getKeyManager().tick();
+                    // if Wanna save 
+                    if(this.getKeyManager().isS()){
+                        //Como es estatico y no depende  de instancia  se manda a llamar la Clase (y solito se trae el obj)
+                        Files.saveFile(this);
+                    }
+                    
+                    // if Wanna load 
+                    if(this.getKeyManager().isL()){
+                        //Como es estatico y no depende  de instancia  se manda a llamar la Clase (y solito se trae el obj)
+                        Files.loadFile(this);
+                        this.getKeyManager().setL(false);
+                    }
+                
+                }//END ELSE PAUSE
             }else{
                //When game is LOST (live - 1), keymanager keeps listening for "J" ro init again
                 if(this.getKeyManager().isJ()){
@@ -506,7 +535,7 @@ public class Game implements Runnable {
         this.rayo = rayo;
     }
 
-    public ArrayList<Enemy> getBricks() {
+    public ArrayList<Enemy> getEnemies() {
         return enemies;
     }
 
@@ -560,5 +589,56 @@ public class Game implements Runnable {
 
     public void setStarted(boolean started) {
         this.started = started;
+ 
     }
+
+    public boolean isPause() {
+        return pause;
+    }
+
+    public void setPause(boolean pause) {
+        this.pause = pause;
+    }
+
+    public ArrayList<Fortaleza> getFortalezas() {
+        return fortalezas;
+    }
+
+    public void setFortalezas(ArrayList<Fortaleza> fortalezas) {
+        this.fortalezas = fortalezas;
+    }
+
+    public boolean isWin() {
+        return win;
+    }
+
+    public void setWin(boolean win) {
+        this.win = win;
+    }
+
+    public int getCont() {
+        return cont;
+    }
+
+    public void setCont(int cont) {
+        this.cont = cont;
+    }
+
+    public SoundClipTest getSound() {
+        return sound;
+    }
+
+    public void setSound(SoundClipTest sound) {
+        this.sound = sound;
+    }
+
+    public int getEnemiesCont() {
+        return enemiesCont;
+    }
+
+    public void setEnemiesCont(int enemiesCont) {
+        this.enemiesCont = enemiesCont;
+    }
+    
+    
 }

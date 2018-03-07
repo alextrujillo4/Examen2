@@ -28,6 +28,14 @@ public class Enemy extends Item{
         vel = 1;
         this.direccion = 1;
     }
+    
+     public Enemy(int x, int y, int width, int height, int tipo, int vel,int direccion, Game game) {
+        super(x, y, width, height);
+        this.game = game;
+        this.tipo = tipo;//0 significa Normal..... 1 = bueno ... 2 = malo
+        this.direccion = direccion;
+        this.vel = vel;
+    }
 
  
 
