@@ -171,9 +171,26 @@ public class Game implements Runnable {
                                
                                resetPlayer();
                                resetRayo();
-                               System.out.println(vidas);
+                              // System.out.println(vidas);
                            }
-                        
+                           
+                           //colision entre bomba y fortaleza
+                           Iterator itrf=fortalezas.iterator();
+                           while( itrf.hasNext()){
+                               Fortaleza fortaleza= (Fortaleza) itrf.next();
+                           if(bomba1.intersects(fortaleza)){
+                               bombas.remove(bomba1);
+                               itrb=bombas.iterator();
+                               
+                               fortaleza.setVidas(getVidas()-1);
+                               
+                                if(fortaleza.getVidas() == 0){
+                                    fortalezas.remove(fortaleza);
+                                   itrf=fortalezas.iterator();
+                                }
+                               
+                           }
+                           }
                         //borrar cada bomba cada que llegue al suelo
                         if(bomba1.getY()>= getHeight()){
                            bombas.remove(bomba1);
@@ -211,7 +228,6 @@ public class Game implements Runnable {
                     enemiesCont ++;
                     contadorbalas++;
                     
-
                           enemyElegido1=(int)(Math.random()*enemies.size())+1;
                                                    
                           //para mostrar las bombas en los enemigos 
@@ -219,7 +235,7 @@ public class Game implements Runnable {
                         while(itre.hasNext() && contadorbalas == 40){
                             Enemy enemy = (Enemy) itre.next();
                             if(enemiesbombaCont==enemyElegido1){
-                               // System.out.println(enemyElegido1);
+                               System.out.println(enemyElegido1);
                                bombas.add(new Bomba(enemy.getX()+enemy.getWidth()/2, enemy.getY(),10,30,0,10,this));
                                contadorbalas=0;
                                enemiesbombaCont=0;
