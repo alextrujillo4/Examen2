@@ -187,7 +187,7 @@ public class Game implements Runnable {
                                itrb=bombas.iterator();
 
                                fortaleza.setVidas(fortaleza.getVidas()-1);
-                               setVidas(getVidas()-1);
+                               
                                 if(fortaleza.getVidas() == 0){
                                     fortalezas.remove(fortaleza);
                                    itrf=fortalezas.iterator();
@@ -216,17 +216,17 @@ public class Game implements Runnable {
                                     for(Enemy enemy2: enemies){
                                         //se mueve para abajo y cambia de direccion
                                          enemy2.y=enemy2.y+1;
-                                         //enemy2.setX(enemy2.getX() - 1);
+                                         enemy2.setX(enemy2.getX() - 1);
                                          enemy2.setDireccion(-1);
                                     } 
-                                //borregoToLeft();
+                                borregoToLeft();
                                 }else if(enemy.getX() <= 0){//checa cuando hay colision a la izquierda
                                     for(Enemy enemy2: enemies){
                                         enemy2.y=enemy2.y+1;
-                                        //enemy2.setX(enemy2.getX() + 1);
+                                        enemy2.setX(enemy2.getX() + 1);
                                         enemy2.setDireccion(1);
                                     }
-                                //borregoToRight();
+                                borregoToRight();
                                 }else if(enemy.getY() >= player.getY() - (player.getHeight() + rayo.getHeight())){
                                     gameover = true;
                                 }
@@ -553,7 +553,7 @@ public class Game implements Runnable {
         int width_fortaleza = 120;
         int height_fortaleza = 90;
         for (int i = 1; i <= 3; i++) {
-                //double randomNum = Math.random() * ( 3 );
+                double randomNum = Math.random() * ( 3 );
                 Fortaleza fortaleza = new Fortaleza(i * ((getWidth() / 3)/2  + width_fortaleza/3  ) , (getHeight() - height_fortaleza - 120) , width_fortaleza , height_fortaleza, this);
                 if(i == 2) 
                     fortaleza.setTipo(1);
