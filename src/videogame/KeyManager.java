@@ -19,9 +19,11 @@ public class KeyManager implements KeyListener {
     public boolean left;    // flag to move left the bar
     public boolean right;   // flag to move right the bar
     public boolean space;   // flag to space
-    public boolean j;
-    public boolean p;
-    public boolean r;
+    public boolean j; // to reinit again
+    public boolean p; // To pause
+    public boolean r; // To resume
+   private boolean s;  // flag to save the game
+    private boolean l;  // flag to load the game
     private boolean keys[];  // to store all the flags for every key
 
     public boolean[] getKeys() {
@@ -45,7 +47,7 @@ public class KeyManager implements KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
         // set true to every key pressed
-        if (e.getKeyCode()!= KeyEvent.VK_P){
+        if (e.getKeyCode()!= KeyEvent.VK_P ){
             keys[e.getKeyCode()] = true;
         }
     }
@@ -62,6 +64,14 @@ public class KeyManager implements KeyListener {
                 break;
                 case KeyEvent.VK_P:
                     keys[KeyEvent.VK_P] = !keys[KeyEvent.VK_P];
+                break;
+            case KeyEvent.VK_S:
+                keys[KeyEvent.VK_S] = !keys[KeyEvent.VK_S];
+                // set false to every key released
+                break;
+            case KeyEvent.VK_L:
+                keys[KeyEvent.VK_L] = !keys[KeyEvent.VK_L];
+                // set false to every key released
                 break;
             default:
                 keys[e.getKeyCode()] = false;
@@ -81,6 +91,8 @@ public class KeyManager implements KeyListener {
         j = keys[KeyEvent.VK_J]; 
         p = keys[KeyEvent.VK_P]; 
         r = keys[KeyEvent.VK_R]; 
+        s = keys[KeyEvent.VK_S];
+        l = keys[KeyEvent.VK_L];
     }
     
     
@@ -150,4 +162,22 @@ public class KeyManager implements KeyListener {
     public void setR(boolean r) {
         this.r = r;
     }
+
+    public boolean isS() {
+        return s;
+    }
+
+    public void setS(boolean s) {
+        this.s = s;
+    }
+
+    public boolean isL() {
+        return l;
+    }
+
+    public void setL(boolean l) {
+        this.l = l;
+    }
+    
+    
 }
