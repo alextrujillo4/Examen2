@@ -35,13 +35,13 @@ public class Files {
             
             printWriter.println("" + game.getScore() + "," + game.getVidas());//Crash = vidas
             
+
           printWriter.println(""+game.getRayo().getX()+","+ game.getRayo().getY()+
                   ","+ game.getRayo().getSpeedY());
           
           printWriter.println(""+String.valueOf(game.isStarted()));
           
-            
-            
+           
             printWriter.println("" + game.getEnemies().size());
             for(Enemy enemy1: game.getEnemies()){
                 printWriter.println("" + enemy1.getX() + "," + enemy1.getY() +
