@@ -246,8 +246,8 @@ public class Game implements Runnable {
                         while(itre.hasNext() && contadorbalas == 40){
                             Enemy enemy = (Enemy) itre.next();
                             
-                            System.out.println("contador de bombas"+ enemiesbombaCont);
-                            System.out.println("EnemyElegido"+enemyElegido1);
+                            //System.out.println("contador de bombas"+ enemiesbombaCont);
+                            //System.out.println("EnemyElegido"+enemyElegido1);
                             if(enemy!=null){
                             if(enemiesbombaCont==enemyElegido1 ){
                                //System.out.println(enemyElegido1);
