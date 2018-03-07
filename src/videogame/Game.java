@@ -244,12 +244,8 @@ public class Game implements Runnable {
                    if(enemiesCont == 45){
                         enemiesCont = 0;
                     }
-                    
-                    if(enemies.size() == 0){
-                     //resetGame(); ---> inside: generateEnemies();
-                        if(vidas < 6)
-                        vidas = vidas  + 1;
-                    }
+                   
+    
          
                     
                     if(vidas == 0){
@@ -263,12 +259,16 @@ public class Game implements Runnable {
                         if (enemy != null ){
                             if (rayo.intersects(enemy)) {
                                 //sound = new SoundClipTest("correct");
-                                if(enemy.getTipo() == 2){
-                                    score+= 8;
-                                }else if(enemy.getTipo() == 1){
-                                    score+= 4;
-                                }else{
-                                    score+= 2;
+                                switch (enemy.getTipo()) {
+                                    case 2:
+                                        score+= 8;
+                                        break;
+                                    case 1:
+                                        score+= 4;
+                                        break;
+                                    default:
+                                        score+= 2;
+                                        break;
                                 }
                                 
                                 enemies.remove(enemy);
@@ -317,8 +317,12 @@ public class Game implements Runnable {
                             }  
                         }
                     }
+                    
                     if(enemies.isEmpty())
-                         win=true;          
+                         //resetGame(); ---> inside: generateEnemies();
+                        if(vidas < 6)
+                        vidas = vidas  + 1;
+                        generateEnemies();         
                    
 
                 }else{
@@ -546,14 +550,14 @@ public class Game implements Runnable {
 
     private void resetPlayer() {
         player.setX(getWidth() / 2 - 50);
-        player.setY(getHeight() - 100);
+        player.setY(getHeight() - 50);
         player.setWidth(100);
     }
 
     private void resetRayo() {
         //Reset posicion og rayo and player
         rayo.setX(getWidth() / 2 - 10);
-        rayo.setY(getHeight() - 120);
+        rayo.setY(getHeight() - player.getHeight() - 50);
     }
     
     
