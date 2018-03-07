@@ -215,18 +215,18 @@ public class Game implements Runnable {
                                     //agrupa a todos los enemigos como uno solo 
                                     for(Enemy enemy2: enemies){
                                         //se mueve para abajo y cambia de direccion
-                                         enemy2.setY(enemy2.getY() + 15);
-                                         enemy2.setX(enemy2.getX() - 1);
+                                         enemy2.y=enemy2.y+1;
+                                         //enemy2.setX(enemy2.getX() - 1);
                                          enemy2.setDireccion(-1);
                                     } 
-                                borregoToLeft();
+                                //borregoToLeft();
                                 }else if(enemy.getX() <= 0){//checa cuando hay colision a la izquierda
                                     for(Enemy enemy2: enemies){
-                                        enemy2.setY(enemy2.getY() + 15);
-                                        enemy2.setX(enemy2.getX() + 1);
+                                        enemy2.y=enemy2.y+1;
+                                        //enemy2.setX(enemy2.getX() + 1);
                                         enemy2.setDireccion(1);
                                     }
-                                borregoToRight();
+                                //borregoToRight();
                                 }else if(enemy.getY() >= player.getY() - (player.getHeight() + rayo.getHeight())){
                                     gameover = true;
                                 }
@@ -334,13 +334,13 @@ public class Game implements Runnable {
                         }
                     }
                     
-                    if(enemies.isEmpty())
+                    if(enemies.isEmpty()){
                          //resetGame(); ---> inside: generateEnemies();
-                        if(vidas < 6)
+                       // if(vidas < 6){
                         vidas = vidas  + 1;
                         generateEnemies();         
                    
-
+                       // }
                 }else{
                     
                     getKeyManager().tick();
@@ -383,7 +383,7 @@ public class Game implements Runnable {
         }   
 
     }
-
+    }
 //END TICK();****
     private void drawWin(Graphics g){
         //show Win
