@@ -168,6 +168,7 @@ public class Game implements Runnable {
                         bomba1.tick();
                           //colision entre bomba y player 
                            if (bomba1.intersects(player)){
+                               sound= new SoundClipTest("boom");
                                bombas.remove(bomba1);
                                itrb=bombas.iterator();
                                vidas--;
@@ -284,7 +285,7 @@ public class Game implements Runnable {
                         Enemy enemy = (Enemy) enemies.get(i);
                         if (enemy != null ){
                             if (rayo.intersects(enemy)) {
-                                //sound = new SoundClipTest("correct");
+                                sound = new SoundClipTest("correct");
                                 switch (enemy.getTipo()) {
                                     case 2:
                                         score+= 8;
@@ -331,7 +332,7 @@ public class Game implements Runnable {
                         Fortaleza fortaleza = (Fortaleza) fortalezas.get(i);
                         if (fortaleza != null ){
                             if (rayo.intersects(fortaleza)) {
-                                //sound = new SoundClipTest("correct");
+                                sound = new SoundClipTest("boom");
                                 fortaleza.setVidas(fortaleza.getVidas() - 1);
                                 if(fortaleza.getVidas() == 0){
                                     fortalezas.remove(fortaleza);
