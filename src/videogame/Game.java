@@ -175,6 +175,7 @@ public class Game implements Runnable {
                                
                                resetPlayer();
                                resetRayo();
+                              generateEnemies();
                               // System.out.println(vidas);
                            }
                            
@@ -216,17 +217,17 @@ public class Game implements Runnable {
                                     for(Enemy enemy2: enemies){
                                         //se mueve para abajo y cambia de direccion
                                          enemy2.y=enemy2.y+1;
-                                         //enemy2.setX(enemy2.getX() - 1);
+                                         enemy2.setX(enemy2.getX() - 1);
                                          enemy2.setDireccion(-1);
                                     } 
-                                //borregoToLeft();
+                                borregoToLeft();
                                 }else if(enemy.getX() <= 0){//checa cuando hay colision a la izquierda
                                     for(Enemy enemy2: enemies){
                                         enemy2.y=enemy2.y+1;
-                                        //enemy2.setX(enemy2.getX() + 1);
+                                        enemy2.setX(enemy2.getX() + 1);
                                         enemy2.setDireccion(1);
                                     }
-                                //borregoToRight();
+                                borregoToRight();
                                 }else if(enemy.getY() >= player.getY() - (player.getHeight() + rayo.getHeight())){
                                     gameover = true;
                                 }
@@ -244,18 +245,32 @@ public class Game implements Runnable {
                      Iterator itre= enemies.iterator();
                         while(itre.hasNext() && contadorbalas == 40){
                             Enemy enemy = (Enemy) itre.next();
-                            if(enemiesbombaCont==enemyElegido1){
-                               System.out.println(enemyElegido1);
+                            
+                            System.out.println("contador de bombas"+ enemiesbombaCont);
+                            System.out.println("EnemyElegido"+enemyElegido1);
+                            if(enemy!=null){
+                            if(enemiesbombaCont==enemyElegido1 ){
+                               //System.out.println(enemyElegido1);
                                bombas.add(new Bomba(enemy.getX()+enemy.getWidth()/2, enemy.getY(),10,30,0,10,this));
+                               contadorbalas=0;
+                               enemiesbombaCont=0;
+                            }
+                            else if(enemiesbombaCont==(enemyElegido1-1)){
+                                bombas.add(new Bomba(enemy.getX()+enemy.getWidth()/2, enemy.getY(),10,30,0,10,this));
                                contadorbalas=0;
                                enemiesbombaCont=0;
                             }
                             else{
                                enemiesbombaCont++;
+                               
                             }
                         
                         }
                         
+                          // enemyElegido1=(int)(Math.random()*enemies.size())+1; 
+                        }
+               
+            
                     
                    if(enemiesCont == 45){
                         enemiesCont = 0;
@@ -288,6 +303,7 @@ public class Game implements Runnable {
                                 }
                                 
                                 enemies.remove(enemy);
+                               // enemyElegido1--;
                                 i--;
                                 int y =  getPlayer().getY() -  getPlayer().getHeight() ;
                                 int x =  getPlayer().getX() + (getPlayer().getWidth())/2;
@@ -296,11 +312,23 @@ public class Game implements Runnable {
                                 rayo.setSpeedY(0);
                                 setStarted(false);   
                             }else if(rayo.intersects(borrego)){
+                                int poderBorrego=(int)(Math.random()*(3));
+                                
+                                if(poderBorrego >=0 && poderBorrego <2){
+                                    setScore(getScore()+ 100);
+                                }
+                                
+                                if(poderBorrego >=2 && poderBorrego <2.5){
+                                    setScore(getScore()+ 150);
+                                }
+                                if(poderBorrego >= 2.5 ){
+                                    setScore (getScore()+200);
+                                }
                                 borrego.setX(-80);
                                 borrego.setDirection(0);
-                                Random random = new Random();
-                                int rand = random.nextInt(10 - 1 + 1) + 1;
-                                setScore(getScore() + rand );
+                                //Random random = new Random();
+                                //int rand = random.nextInt(10 - 1 + 1) + 1;
+                                //setScore(getScore() + rand );
                             
                             }
                         }
