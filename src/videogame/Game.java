@@ -156,6 +156,8 @@ public class Game implements Runnable {
                         // moving the rayo based on the plaver
                         rayo.setX(player.getX() + player.getWidth() / 2 - rayo.getWidth() / 2);
                     }
+                    
+                    
                     Iterator itrb=bombas.iterator();
                    while (itrb.hasNext()){
                         
@@ -163,7 +165,12 @@ public class Game implements Runnable {
                         bomba1.tick();
                           //colision entre bomba y player 
                            if (bomba1.intersects(player)){
+                               bombas.remove(bomba1);
+                               itrb=bombas.iterator();
                                vidas--;
+                               
+                               resetPlayer();
+                               resetRayo();
                                System.out.println(vidas);
                            }
                         
