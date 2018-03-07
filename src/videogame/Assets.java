@@ -19,7 +19,6 @@ public class Assets {
      public static BufferedImage examen; 
      public static BufferedImage profesor; 
      
-      public static BufferedImage cetec; 
      public static BufferedImage rectoria; 
      public static BufferedImage biblioteca;
        
@@ -37,10 +36,28 @@ public class Assets {
     public static BufferedImage livesNone;
     public static BufferedImage rayoEnemigo;
     public static BufferedImage lamb;
-    
-    
-    
+
     public static BufferedImage lost;
+    
+    public static BufferedImage cetec0; 
+    public static BufferedImage cetec1; 
+    public static BufferedImage cetec2; 
+    public static BufferedImage cetec3; 
+    public static BufferedImage cetec4; 
+    public static BufferedImage cetec5; 
+    public static BufferedImage cetec6; 
+    public static BufferedImage cetec7; 
+    public static BufferedImage cetec8; 
+    public static BufferedImage cetec9; 
+    public static BufferedImage cetec10; 
+    public static BufferedImage cetec11; 
+    public static BufferedImage cetec12; 
+    public static BufferedImage cetec13; 
+    public static BufferedImage cetec14; 
+    public static BufferedImage cetec15; 
+    public static BufferedImage cetec16; 
+    public static BufferedImage cetec17; 
+    
     
 
     /**
@@ -54,7 +71,7 @@ public class Assets {
         examen = ImageLoader.loadImage("/images/examen.png");
         profesor = ImageLoader.loadImage("/images/profesor.png");
         
-        cetec = ImageLoader.loadImage("/images/cetec.png");
+        
         rectoria = ImageLoader.loadImage("/images/rectoria.png");
         biblioteca = ImageLoader.loadImage("/images/biblioteca.png");
         
@@ -76,6 +93,27 @@ public class Assets {
         
         lost= ImageLoader.loadImage("/images/Lost.png");
         pause= ImageLoader.loadImage("/images/pause.png");
+        
+        
+        cetec0 = ImageLoader.loadImage("/images/cetec0.png");
+        cetec1 = ImageLoader.loadImage("/images/cetec1.png");
+        cetec2 = ImageLoader.loadImage("/images/cetec2.png");
+        cetec3 = ImageLoader.loadImage("/images/cetec3.png");
+        cetec4 = ImageLoader.loadImage("/images/cetec4.png");
+        cetec5 = ImageLoader.loadImage("/images/cetec5.png");
+        cetec6 = ImageLoader.loadImage("/images/cetec6.png");
+        cetec7 = ImageLoader.loadImage("/images/cetec7.png");
+        cetec8 = ImageLoader.loadImage("/images/cetec8.png");
+        cetec9 = ImageLoader.loadImage("/images/cetec9.png");
+        cetec10 = ImageLoader.loadImage("/images/cetec10.png");
+        cetec11 = ImageLoader.loadImage("/images/cetec11.png");
+        cetec12 = ImageLoader.loadImage("/images/cetec12.png");
+        cetec13 = ImageLoader.loadImage("/images/cetec13.png");
+        cetec14 = ImageLoader.loadImage("/images/cetec14.png");
+        cetec15 = ImageLoader.loadImage("/images/cetec15.png");
+        cetec16 = ImageLoader.loadImage("/images/cetec16.png");
+        cetec17= ImageLoader.loadImage("/images/cetec17.png");
+        
     }
     
 }

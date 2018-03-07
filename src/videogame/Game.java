@@ -185,9 +185,9 @@ public class Game implements Runnable {
                            if(bomba1.intersects(fortaleza)){
                                bombas.remove(bomba1);
                                itrb=bombas.iterator();
-                               
-                               fortaleza.setVidas(getVidas()-1);
-                               
+
+                               fortaleza.setVidas(fortaleza.getVidas()-1);
+                               setVidas(getVidas()-1);
                                 if(fortaleza.getVidas() == 0){
                                     fortalezas.remove(fortaleza);
                                    itrf=fortalezas.iterator();

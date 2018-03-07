@@ -24,7 +24,7 @@ public class Fortaleza extends Item{
         super(x, y, width, height);
         this.game = game;
         this.tipo = 0;//0 significa Normal..... 1 = bueno ... 2 = malo
-        vidas = 3;
+        vidas = 18;
     }
 
     @Override
@@ -35,8 +35,48 @@ public class Fortaleza extends Item{
     public void render(Graphics g) {
         switch (tipo) {
             case 0:
-                g.drawImage(Assets.cetec , getX(), getY(), getWidth(), getHeight(), null);
+                
+                if(vidas == 18){
+                    g.drawImage(Assets.cetec0 , getX(), getY(), getWidth(), getHeight(), null);
+                }else if(vidas == 17){
+                    g.drawImage(Assets.cetec1 , getX(), getY(), getWidth(), getHeight(), null);
+                }else if(vidas == 16){
+                    g.drawImage(Assets.cetec2 , getX(), getY(), getWidth(), getHeight(), null);
+                }else if(vidas == 15){
+                    g.drawImage(Assets.cetec3 , getX(), getY(), getWidth(), getHeight(), null);
+                }else if(vidas == 14){
+                    g.drawImage(Assets.cetec4 , getX(), getY(), getWidth(), getHeight(), null);
+                }else if(vidas == 13){
+                    g.drawImage(Assets.cetec5 , getX(), getY(), getWidth(), getHeight(), null);
+                }else if(vidas == 12){
+                    g.drawImage(Assets.cetec6 , getX(), getY(), getWidth(), getHeight(), null);
+                }else if(vidas == 11){
+                    g.drawImage(Assets.cetec7 , getX(), getY(), getWidth(), getHeight(), null);
+                }else if(vidas == 10){
+                    g.drawImage(Assets.cetec8 , getX(), getY(), getWidth(), getHeight(), null);
+                }else if(vidas == 9){
+                    g.drawImage(Assets.cetec9 , getX(), getY(), getWidth(), getHeight(), null);
+                }else if(vidas == 8){
+                    g.drawImage(Assets.cetec10 , getX(), getY(), getWidth(), getHeight(), null);
+                }else if(vidas == 7){
+                    g.drawImage(Assets.cetec11 , getX(), getY(), getWidth(), getHeight(), null);
+                }else if(vidas == 6){
+                    g.drawImage(Assets.cetec12 , getX(), getY(), getWidth(), getHeight(), null);
+                }else if(vidas == 5){
+                    g.drawImage(Assets.cetec13, getX(), getY(), getWidth(), getHeight(), null);
+                }else if(vidas == 4){
+                    g.drawImage(Assets.cetec14, getX(), getY(), getWidth(), getHeight(), null);
+                }else if(vidas == 3){
+                    g.drawImage(Assets.cetec15, getX(), getY(), getWidth(), getHeight(), null);
+                }else if(vidas == 2){
+                    g.drawImage(Assets.cetec16, getX(), getY(), getWidth(), getHeight(), null);
+                }else if(vidas == 1){
+                    g.drawImage(Assets.cetec17, getX(), getY(), getWidth(), getHeight(), null);
+                }
+               
                 break;
+                
+                
             case 1:
                 g.drawImage(Assets.rectoria, getX(), getY(), getWidth(), getHeight(), null);
                 break;
