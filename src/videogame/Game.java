@@ -359,11 +359,7 @@ public class Game implements Runnable {
                 }
             }
                 
-                
-                
-                
-                
-                
+
                 else{
                     
                      getKeyManager().tick();

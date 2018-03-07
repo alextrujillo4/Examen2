@@ -35,7 +35,11 @@ public class Files {
             
             printWriter.println("" + game.getScore() + "," + game.getVidas());//Crash = vidas
             
-         // printWriter.println(""+game.getRayo().getX()+","+ game.getRayo.getY());
+          printWriter.println(""+game.getRayo().getX()+","+ game.getRayo().getY()+
+                  ","+ game.getRayo().getSpeedY());
+          
+          printWriter.println(""+String.valueOf(game.isStarted()));
+          
             
             
             printWriter.println("" + game.getEnemies().size());
@@ -76,8 +80,27 @@ public class Files {
              game.setScore(Integer.parseInt(tokens[0]));
              game.setVidas(Integer.parseInt(tokens[1]));
              
+             //get the first line
+            line = bufferedReader.readLine();
+            // getting every token from the line
+            tokens = line.split(",");
+            //defining x and y for the rayp 
+            game.getRayo().setX(Integer.parseInt(tokens[0]));
+            game.getRayo().setY(Integer.parseInt(tokens[1]));
+            game.getRayo().setSpeedY(Integer.parseInt(tokens[2]));
+             
+            
+            //get the first line
+            line = bufferedReader.readLine();
+            // getting every token from the line
+            tokens = line.split(",");
               //geting the nextLine
               line = bufferedReader.readLine();
+              //game.isStarted((tokens[0]));
+              game.setStarted(Boolean.valueOf(tokens[0]));
+              
+           
+              
              int enemies  = Integer.parseInt(line);
              
              //clearing enemies
