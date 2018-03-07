@@ -14,6 +14,7 @@ import static java.lang.Math.random;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Random;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
@@ -51,6 +52,7 @@ public class Game implements Runnable {
    private int bombaX, bombaY;
    private int enemiesbombaCont, contadorbalas;
    private int enemyrandomX, enemyrandomY;
+   private Borrego borrego;
    
   
     
@@ -89,9 +91,10 @@ public class Game implements Runnable {
          Assets.init();
          player = new Player(getWidth() / 2 - 50, getHeight() - 50, 100, 30, this);
          rayo = new Rayo(getWidth() / 2 - 10, player.y - player.height , 10, 30, 0, 0, this);
+         borrego = new Borrego(-80, 60 , 50, 20, 0, 0, this);
          generateEnemies();
          generateFortalezas();
-           bombas= new ArrayList<Bomba>();
+         bombas= new ArrayList<Bomba>();
          
          
          display.getJframe().addKeyListener(keyManager);
@@ -147,6 +150,7 @@ public class Game implements Runnable {
                     } 
                     // moving player
                     player.tick();
+                    borrego.tick();
                     // if game has started
                     if (this.isStarted()) {
                         // moving the rayo
@@ -211,20 +215,26 @@ public class Game implements Runnable {
                                     //agrupa a todos los enemigos como uno solo 
                                     for(Enemy enemy2: enemies){
                                         //se mueve para abajo y cambia de direccion
-                                        enemy2.setY(enemy2.getY() + 1);
-                                        enemy2.setDireccion(-1);
-                                    }  
+                                         enemy2.setY(enemy2.getY() + 15);
+                                         enemy2.setX(enemy2.getX() - 1);
+                                         enemy2.setDireccion(-1);
+                                    } 
+                                borregoToLeft();
                                 }else if(enemy.getX() <= 0){//checa cuando hay colision a la izquierda
                                     for(Enemy enemy2: enemies){
+                                        enemy2.setY(enemy2.getY() + 15);
+                                        enemy2.setX(enemy2.getX() + 1);
                                         enemy2.setDireccion(1);
-                                        enemy2.setY(enemy2.getY() + 1);
                                     }
+                                borregoToRight();
                                 }else if(enemy.getY() >= player.getY() - (player.getHeight() + rayo.getHeight())){
                                     gameover = true;
                                 }
                             }    
                         }  
                     }
+                    
+                    
                     enemiesCont ++;
                     contadorbalas++;
                     
@@ -253,7 +263,8 @@ public class Game implements Runnable {
                     
                     if(enemies.size() == 0){
                      //resetGame(); ---> inside: generateEnemies();
-                     vidas = vidas  + 1;
+                        if(vidas < 6)
+                        vidas = vidas  + 1;
                     }
          
                     
@@ -284,7 +295,14 @@ public class Game implements Runnable {
                                 rayo.setX(x);
                                 rayo.setSpeedY(0);
                                 setStarted(false);   
-                            }   
+                            }else if(rayo.intersects(borrego)){
+                                borrego.setX(-80);
+                                borrego.setDirection(0);
+                                Random random = new Random();
+                                int rand = random.nextInt(10 - 1 + 1) + 1;
+                                setScore(getScore() + rand );
+                            
+                            }
                         }
                     }
                     
@@ -384,14 +402,21 @@ public class Game implements Runnable {
     }
     
     private void drawLives(Graphics g, int lnumber){
-        if( lnumber == 3)
-            g.drawImage(Assets.lives3, this.width - 240 , 15 , 150, 40, null);
+        
+        if( lnumber == 6)
+            g.drawImage(Assets.lives6, this.width - 240 , 15 , 150, 80, null);
+        else if ( lnumber == 5)
+            g.drawImage(Assets.lives5, this.width - 240 , 15 , 150, 80, null);
+        else if ( lnumber == 4)
+            g.drawImage(Assets.lives4, this.width - 240 , 15 , 150, 80, null);
+        else if ( lnumber == 3)
+            g.drawImage(Assets.lives3, this.width - 240 , 15 , 150, 80, null);
         else if ( lnumber == 2)
-            g.drawImage(Assets.lives2, this.width - 240 , 15 , 150, 40, null);
+            g.drawImage(Assets.lives2, this.width - 240 , 15 , 150, 80, null);
         else if ( lnumber == 1)
-            g.drawImage(Assets.lives1, this.width - 240 , 15 , 150, 40, null);
+            g.drawImage(Assets.lives1, this.width - 240 , 15 , 150, 80, null);
         else if ( lnumber <= 0)
-            g.drawImage(Assets.livesNone, this.width - 240 , 15 , 150, 40, null);
+            g.drawImage(Assets.livesNone, this.width - 240 , 15 , 150, 80, null);
     }
 
     
@@ -422,7 +447,7 @@ public class Game implements Runnable {
             
             if(!gameover){
                 player.render(g);
-                //player2.render(g);
+                borrego.render(g);
                 rayo.render(g);
                 
                 for (Enemy brick : enemies) {
@@ -507,7 +532,7 @@ public class Game implements Runnable {
         for (int i = 0; i < 10; i++) {
             for (int j = 1; j <= 5; j++) {
                 //double randomNum = Math.random() * ( 3 );
-                Enemy enemy = new Enemy(i * (width_enemy + 15) , j * (height_enemy + 15) , width_enemy , height_enemy, this);
+                Enemy enemy = new Enemy(i * (width_enemy + 15) + 40 , j * (height_enemy + 15) + 40, width_enemy , height_enemy, this);
                 if(j == 2 || j == 3 ) 
                     enemy.setTipo(1);
                 if(j == 4 || j == 5 )
@@ -723,6 +748,16 @@ public class Game implements Runnable {
 
     public void setEnemiesCont(int enemiesCont) {
         this.enemiesCont = enemiesCont;
+    }
+
+    private void borregoToLeft() {
+        borrego.setX(-50);
+        borrego.setDirection(1);
+    }
+
+    private void borregoToRight() {
+        borrego.setX(getWidth() + 50);
+        borrego.setDirection(-1);
     }
     
     

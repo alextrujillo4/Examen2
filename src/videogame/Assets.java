@@ -28,11 +28,16 @@ public class Assets {
     public static BufferedImage win;
     
     public static BufferedImage rayo;
+    public static BufferedImage lives6;
+    public static BufferedImage lives5;
+    public static BufferedImage lives4;
     public static BufferedImage lives3;
     public static BufferedImage lives2;
     public static BufferedImage lives1;
     public static BufferedImage livesNone;
     public static BufferedImage rayoEnemigo;
+    public static BufferedImage lamb;
+    
     
     
     public static BufferedImage lost;
@@ -59,11 +64,15 @@ public class Assets {
         gameOver= ImageLoader.loadImage("/images/GameOver.png");
         win = ImageLoader.loadImage("/images/ganar.png");
         
+        lives6 = ImageLoader.loadImage("/images/vidas6.png");
+        lives5 = ImageLoader.loadImage("/images/vidas5.png");
+        lives4 = ImageLoader.loadImage("/images/vidas4.png");
         lives3 = ImageLoader.loadImage("/images/vidas3.png");
         lives2 = ImageLoader.loadImage("/images/vidas2.png");
         lives1= ImageLoader.loadImage("/images/vidas1.png");
         livesNone= ImageLoader.loadImage("/images/novidas.png");
         rayoEnemigo=ImageLoader.loadImage("/images/rayoEnemy.png");
+        lamb=ImageLoader.loadImage("/images/lamb.png");
         
         lost= ImageLoader.loadImage("/images/Lost.png");
         pause= ImageLoader.loadImage("/images/pause.png");
