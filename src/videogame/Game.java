@@ -185,8 +185,10 @@ public class Game implements Runnable {
                            if(bomba1.intersects(fortaleza)){
                                bombas.remove(bomba1);
                                itrb=bombas.iterator();
-                               
-                               fortaleza.setVidas(getVidas()-1);
+
+
+                               fortaleza.setVidas(fortaleza.getVidas()-1);
+
                                
                                 if(fortaleza.getVidas() == 0){
                                     fortalezas.remove(fortaleza);
@@ -413,7 +415,7 @@ public class Game implements Runnable {
     }
     
      private void drawPause(Graphics g){
-       // Show LOST!!
+       // fShow LOST!!
         g.drawImage(Assets.pause, (this.width / 2) - 200, (this.height / 2) - 200, 400 , 400, null);
     }
     
@@ -565,7 +567,7 @@ public class Game implements Runnable {
         int width_fortaleza = 120;
         int height_fortaleza = 90;
         for (int i = 1; i <= 3; i++) {
-                //double randomNum = Math.random() * ( 3 );
+                double randomNum = Math.random() * ( 3 );
                 Fortaleza fortaleza = new Fortaleza(i * ((getWidth() / 3)/2  + width_fortaleza/3  ) , (getHeight() - height_fortaleza - 120) , width_fortaleza , height_fortaleza, this);
                 if(i == 2) 
                     fortaleza.setTipo(1);

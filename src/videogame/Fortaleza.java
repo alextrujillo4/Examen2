@@ -35,7 +35,6 @@ public class Fortaleza extends Item{
     public void render(Graphics g) {
         switch (tipo) {
             case 0:
-                
                 if(vidas == 18){
                     g.drawImage(Assets.cetec0 , getX(), getY(), getWidth(), getHeight(), null);
                 }else if(vidas == 17){
@@ -73,12 +72,49 @@ public class Fortaleza extends Item{
                 }else if(vidas == 1){
                     g.drawImage(Assets.cetec17, getX(), getY(), getWidth(), getHeight(), null);
                 }
-               
                 break;
                 
                 
             case 1:
-                g.drawImage(Assets.rectoria, getX(), getY(), getWidth(), getHeight(), null);
+                
+                    if(vidas == 18){
+                    g.drawImage(Assets.rectoria18, getX(), getY(), getWidth(), getHeight(), null);
+                    }else if(vidas == 17){
+                        g.drawImage(Assets.rectoria17 , getX(), getY(), getWidth(), getHeight(), null);
+                    }else if(vidas == 16){
+                        g.drawImage(Assets.rectoria16 , getX(), getY(), getWidth(), getHeight(), null);
+                    }else if(vidas == 15){
+                        g.drawImage(Assets.rectoria15 , getX(), getY(), getWidth(), getHeight(), null);
+                    }else if(vidas == 14){
+                        g.drawImage(Assets.rectoria14 , getX(), getY(), getWidth(), getHeight(), null);
+                    }else if(vidas == 13){
+                        g.drawImage(Assets.rectoria13 , getX(), getY(), getWidth(), getHeight(), null);
+                    }else if(vidas == 12){
+                        g.drawImage(Assets.rectoria12 , getX(), getY(), getWidth(), getHeight(), null);
+                    }else if(vidas == 11){
+                        g.drawImage(Assets.rectoria11 , getX(), getY(), getWidth(), getHeight(), null);
+                    }else if(vidas == 10){
+                        g.drawImage(Assets.rectoria10 , getX(), getY(), getWidth(), getHeight(), null);
+                    }else if(vidas == 9){
+                        g.drawImage(Assets.rectoria9 , getX(), getY(), getWidth(), getHeight(), null);
+                    }else if(vidas == 8){
+                        g.drawImage(Assets.rectoria8 , getX(), getY(), getWidth(), getHeight(), null);
+                    }else if(vidas == 7){
+                        g.drawImage(Assets.rectoria7 , getX(), getY(), getWidth(), getHeight(), null);
+                    }else if(vidas == 6){
+                        g.drawImage(Assets.rectoria6 , getX(), getY(), getWidth(), getHeight(), null);
+                    }else if(vidas == 5){
+                        g.drawImage(Assets.rectoria5, getX(), getY(), getWidth(), getHeight(), null);
+                    }else if(vidas == 4){
+                        g.drawImage(Assets.rectoria4, getX(), getY(), getWidth(), getHeight(), null);
+                    }else if(vidas == 3){
+                        g.drawImage(Assets.rectoria3, getX(), getY(), getWidth(), getHeight(), null);
+                    }else if(vidas == 2){
+                        g.drawImage(Assets.rectoria2, getX(), getY(), getWidth(), getHeight(), null);
+                    }else if(vidas == 1){
+                        g.drawImage(Assets.rectoria1, getX(), getY(), getWidth(), getHeight(), null);
+                    }
+               
                 break;
             case 2:
                 g.drawImage(Assets.biblioteca, getX(), getY(), getWidth(), getHeight(), null);

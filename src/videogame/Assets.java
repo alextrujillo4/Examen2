@@ -59,6 +59,25 @@ public class Assets {
     public static BufferedImage cetec17; 
     
 
+     public static BufferedImage rectoria1; 
+    public static BufferedImage rectoria2; 
+    public static BufferedImage rectoria3; 
+    public static BufferedImage rectoria4; 
+    public static BufferedImage rectoria5; 
+    public static BufferedImage rectoria6; 
+    public static BufferedImage rectoria7; 
+    public static BufferedImage rectoria8; 
+    public static BufferedImage rectoria9; 
+    public static BufferedImage rectoria10; 
+    public static BufferedImage rectoria11; 
+    public static BufferedImage rectoria12; 
+    public static BufferedImage rectoria13; 
+    public static BufferedImage rectoria14; 
+    public static BufferedImage rectoria15; 
+    public static BufferedImage rectoria16; 
+    public static BufferedImage rectoria17; 
+    public static BufferedImage rectoria18; 
+
     
     
 
@@ -115,6 +134,27 @@ public class Assets {
         cetec15 = ImageLoader.loadImage("/images/cetec15.png");
         cetec16 = ImageLoader.loadImage("/images/cetec16.png");
         cetec17= ImageLoader.loadImage("/images/cetec17.png");
+        
+        
+        rectoria1 = ImageLoader.loadImage("/images/rectoria1.png");
+        rectoria2 = ImageLoader.loadImage("/images/rectoria2.png");
+        rectoria3 = ImageLoader.loadImage("/images/rectoria3.png");
+        rectoria4 = ImageLoader.loadImage("/images/rectoria4.png");
+        rectoria5 = ImageLoader.loadImage("/images/rectoria5.png");
+        rectoria6 = ImageLoader.loadImage("/images/rectoria6.png");
+        rectoria7 = ImageLoader.loadImage("/images/rectoria7.png");
+        rectoria8 = ImageLoader.loadImage("/images/rectoria8.png");
+        rectoria9 = ImageLoader.loadImage("/images/rectoria9.png");
+        rectoria10 = ImageLoader.loadImage("/images/rectoria10.png");
+        rectoria11 = ImageLoader.loadImage("/images/rectoria11.png");
+        rectoria12 = ImageLoader.loadImage("/images/rectoria12.png");
+        rectoria13 = ImageLoader.loadImage("/images/rectoria13.png");
+        rectoria14 = ImageLoader.loadImage("/images/rectoria14.png");
+        rectoria15 = ImageLoader.loadImage("/images/rectoria15.png");
+        rectoria16 = ImageLoader.loadImage("/images/rectoria16.png");
+        rectoria17= ImageLoader.loadImage("/images/rectoria17.png");
+        rectoria18 = ImageLoader.loadImage("/images/rectoria18.png");
+        
         
     }
     
