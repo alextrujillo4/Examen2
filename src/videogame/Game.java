@@ -49,7 +49,7 @@ public class Game implements Runnable {
    private int tiempoBomba= (int)(Math.random()*50)+ 100; //cada cuantos segundos va a aparecer una bomba
    private int enemyElegido1,enemyElegido2;
    private int bombaX, bombaY;
-   private int enemiesbombaCont;
+   private int enemiesbombaCont, contadorbalas;
    private int enemyrandomX, enemyrandomY;
    
   
@@ -76,6 +76,7 @@ public class Game implements Runnable {
         enemiesCont = 0;
         cont=0;
         enemiesbombaCont=0;
+        contadorbalas=0;
     }
     
 
@@ -155,7 +156,25 @@ public class Game implements Runnable {
                         // moving the rayo based on the plaver
                         rayo.setX(player.getX() + player.getWidth() / 2 - rayo.getWidth() / 2);
                     }
-
+                    Iterator itrb=bombas.iterator();
+                   while (itrb.hasNext()){
+                        
+                        Bomba bomba1= (Bomba) itrb.next();
+                        bomba1.tick();
+                          //colision entre bomba y player 
+                           if (bomba1.intersects(player)){
+                               vidas--;
+                               System.out.println(vidas);
+                           }
+                        
+                        //borrar cada bomba cada que llegue al suelo
+                        if(bomba1.getY()>= getHeight()){
+                           bombas.remove(bomba1);
+                           itrb=bombas.iterator();
+                           
+                         
+                        }
+                 }
                     
                     //enemigos se muevan
                     if(enemiesCont< 15){
@@ -183,7 +202,29 @@ public class Game implements Runnable {
                         }  
                     }
                     enemiesCont ++;
-                    if(enemiesCont == 45){
+                    contadorbalas++;
+                    
+
+                          enemyElegido1=(int)(Math.random()*enemies.size())+1;
+                                                   
+                          //para mostrar las bombas en los enemigos 
+                     Iterator itre= enemies.iterator();
+                        while(itre.hasNext() && contadorbalas == 40){
+                            Enemy enemy = (Enemy) itre.next();
+                            if(enemiesbombaCont==enemyElegido1){
+                               // System.out.println(enemyElegido1);
+                               bombas.add(new Bomba(enemy.getX()+enemy.getWidth()/2, enemy.getY(),10,30,0,10,this));
+                               contadorbalas=0;
+                               enemiesbombaCont=0;
+                            }
+                            else{
+                               enemiesbombaCont++;
+                            }
+                        
+                        }
+                        
+                    
+                   if(enemiesCont == 45){
                         enemiesCont = 0;
                     }
                     
@@ -197,8 +238,6 @@ public class Game implements Runnable {
                         gameover = true;
                     }
                         
-
-    
                     
                     // check collision enemies vs rayo
                     for (int i = 0; i < enemies.size(); i++) {
@@ -213,6 +252,7 @@ public class Game implements Runnable {
                                 }else{
                                     score+= 2;
                                 }
+                                
                                 enemies.remove(enemy);
                                 i--;
                                 int y =  getPlayer().getY() -  getPlayer().getHeight() ;
@@ -224,6 +264,13 @@ public class Game implements Runnable {
                             }   
                         }
                     }
+                    
+                    
+                    
+                    
+                    
+                    
+                    
                      // check collision Fortaleza vs rayo
                     for (int i = 0; i < fortalezas.size(); i++) {
                         Fortaleza fortaleza = (Fortaleza) fortalezas.get(i);
@@ -364,9 +411,9 @@ public class Game implements Runnable {
                     fortaleza.render(g);
                 }
                 
-                for (Bomba bomba: bombas){
+               for (Bomba bomba: bombas){
                     bomba.render(g);
-                }
+               }
                 
                 drawScore(g);
                 drawLives(g,vidas);
@@ -624,13 +671,12 @@ public class Game implements Runnable {
         this.fortalezas = fortalezas;
     }
 
-    public boolean isWin() {
-        return win;
-    }
+   // public boolean isWin() {
+     //   return win;
+    //}
 
-    public void setWin(boolean win) {
-        this.win = win;
-    }
+    //public void setWin(boolean win) {        this.win = win;
+    //}
 
     public int getCont() {
         return cont;
